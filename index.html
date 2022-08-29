@@ -68,7 +68,8 @@ Creating Index File
                 name: fullname, 
                 destination: destination, 
                 details: details
-            };
+            }
+            var today = new Date();
             analytics.identify('12345', {
                 email: email, 
                 name: fullname
@@ -77,6 +78,7 @@ Creating Index File
                 window.location.href = "";
             });
             analytics.track("click", {
+            date: today,  
             url: window.location.href });
 
           }
