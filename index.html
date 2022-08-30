@@ -71,22 +71,10 @@ Creating Index File
             }
 
             var today = new Date();
-            analytics.identify('12345', {
-                email: email, 
-                name: fullname,
-                numOne: 1,
-                notOne: -1
-            });
             analytics.track('destination submitted', user, function() {
                 window.location.href = "";
             });
-            analytics.identify("2345",{
-                email: email,
-                name: fullname,
-                numOne: 1,
-                notOne:-1
-                
-            });
+            
                             
             analytics.track("click",{
             date: today,
