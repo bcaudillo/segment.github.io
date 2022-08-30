@@ -69,7 +69,6 @@ Creating Index File
                 destination: destination, 
                 details: details
             }
-            var what = e.target.value
 
             var today = new Date();
             analytics.identify('12345', {
@@ -81,8 +80,12 @@ Creating Index File
             analytics.track('destination submitted', user, function() {
                 window.location.href = "";
             });
-            analytics.track("mouseover",{
-                what: what
+            analytics.identify("2345",{
+                email: email,
+                name: fullname,
+                numOne: 1,
+                notOne:-1
+                
             });
                             
             analytics.track("click",{
