@@ -77,7 +77,10 @@ Creating Index File
             
             analytics.identify({
                 subscriptionStatus: 'inactive'
-            });           
+            });
+            analytics.identify('234',{
+                male: 'man'
+            });   
             analytics.track("click",{
             date: today,
             url: window.location.href,
