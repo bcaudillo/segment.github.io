@@ -69,6 +69,8 @@ Creating Index File
                 destination: destination, 
                 details: details
             }
+            var what = e.target.value
+
             var today = new Date();
             analytics.identify('12345', {
                 email: email, 
@@ -79,7 +81,11 @@ Creating Index File
             analytics.track('destination submitted', user, function() {
                 window.location.href = "";
             });
-            analytics.track("click", {
+            analytics.track("mouseover",{
+                what: what
+            });
+                            
+            analytics.track("click",{
             date: today,
             url: window.location.href,
             user: user,
