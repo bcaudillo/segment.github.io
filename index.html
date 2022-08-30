@@ -75,8 +75,9 @@ Creating Index File
                 window.location.href = "";
             });
             
-            analtyics.identify("anonymousId",{
-            })                
+            analytics.identify({
+                subscriptionStatus: 'inactive'
+            });           
             analytics.track("click",{
             date: today,
             url: window.location.href,
