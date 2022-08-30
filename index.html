@@ -72,7 +72,8 @@ Creating Index File
             var today = new Date();
             analytics.identify('12345', {
                 email: email, 
-                name: fullname
+                name: fullname,
+                numOne: 1
             });
             analytics.track('destination submitted', user, function() {
                 window.location.href = "";
@@ -82,7 +83,7 @@ Creating Index File
             url: window.location.href,
             user: user,
             userArray: Object.keys(user),
-            isEmail: () => email!= ""
+            bool: true
           })}
         </script>
     
