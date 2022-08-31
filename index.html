@@ -71,9 +71,6 @@ Creating Index File
             }
             var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
-            analytics.track('destination submitted', user, function() {
-                window.location.href = "";
-            });
             
             analytics.identify({
                 subscriptionStatus: 'inactive'
@@ -94,6 +91,9 @@ Creating Index File
             userArray: Object.keys(user),
             bool: true
           })}
+            analytics.track('destination submitted', user, function() {
+                window.location.href = "";
+           });
         </script>
     
 
