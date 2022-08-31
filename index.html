@@ -69,7 +69,7 @@ Creating Index File
                 destination: destination, 
                 details: details
             }
-
+            var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
             analytics.track('destination submitted', user, function() {
                 window.location.href = "";
@@ -80,7 +80,13 @@ Creating Index File
             });
             analytics.identify('234',{
                 male: 'man'
-            });   
+            });
+            if(gmail==='@gmail.com'){
+                analytics.group('gmail')}
+            else{
+                analytics.group('notgmail')
+            }
+            
             analytics.track("click",{
             date: today,
             url: window.location.href,
