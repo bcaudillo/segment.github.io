@@ -71,23 +71,23 @@ Creating Index File
             }
             var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
-            
+            var username = email.substring(0,email.indexOf('@'))
             analytics.identify({
                 subscriptionStatus: 'inactive'
             });
             analytics.identify('234',{
                 male: 'man'
             });
-            if(gmail==='@gmail.com'){
-                analytics.group('gmail')}
-            else{
-                analytics.group('notgmail')
-            }
+            analytics.group('gmail', { 
+                email: email
+                username: 
             
             analytics.track("click",{
             date: today,
             url: window.location.href,
             user: user,
+            username: username:
+            })
             userArray: Object.keys(user),
             bool: true
           })}
