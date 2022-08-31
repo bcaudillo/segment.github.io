@@ -79,14 +79,13 @@ Creating Index File
                 male: 'man'
             });
             analytics.group('gmail', { 
-                email: email
-                username: 
-            
+                user: user,
+                username: username
+            })
+               
             analytics.track("click",{
             date: today,
             url: window.location.href,
-            user: user,
-            username: username
             })
             userArray: Object.keys(user),
             bool: true
