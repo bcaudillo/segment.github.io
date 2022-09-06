@@ -79,12 +79,7 @@ Creating Index File
           
                
             analytics.track("click",{
-            date: today,
-            url: window.location.href,
-            userArray: Object.keys(user),
-            bool: true
-      },
-             if(gmail==='@gmail.com'){
+            if(gmail==='@gmail.com'){
             analytics.group('gmail',{
                 userId: '12345',
             })}
@@ -93,7 +88,13 @@ Creating Index File
                     userId: '12345',
              
                 })
-            })
+            })    
+            date: today,
+            url: window.location.href,
+            userArray: Object.keys(user),
+            bool: true
+      },
+          
             analytics.track('destination submitted ', user, function() {
                 window.location.href = "";
            })};
