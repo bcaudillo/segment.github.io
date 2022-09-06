@@ -78,11 +78,11 @@ Creating Index File
             analytics.identify('234',{
                 male: 'man'
             });
-            analytics.group('gmail', { 
-                user: user,
-                username: username,
-                atrait: 'stuff'
-            })
+            if(gmail==='@gmail.com'){
+                analytics.group('gmail')}
+            else{
+                analytics.group('notgmail')
+            }
                
             analytics.track("click",{
             date: today,
