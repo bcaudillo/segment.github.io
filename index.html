@@ -72,13 +72,10 @@ Creating Index File
             var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
             var username = email.substring(0,email.indexOf('@'))
+            
             analytics.identify('12345',{
                 subscriptionStatus: 'inactive'
             });
-            
-          
-               
-            analytics.track("click",{
             if(gmail==='@gmail.com'){
             analytics.group('gmail',{
                 userId: '12345',
@@ -88,7 +85,10 @@ Creating Index File
                     userId: '12345',
              
                 })
-            })    
+            })  
+          
+               
+            analytics.track("click",{  
             date: today,
             url: window.location.href,
             userArray: Object.keys(user),
