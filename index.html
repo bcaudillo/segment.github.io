@@ -24,6 +24,17 @@ Creating Index File
                     secure: true
                   }
             });
+            analytics.load('ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF', {
+                user: {
+                    persist: true,
+                    cookie: {
+                        key: 'ajs_anonymous_id'
+                    },
+                    localStorage: {
+                        key: 'ajs_anonymous_id'
+                    }
+                }
+            })
             analytics.page();
            
            
