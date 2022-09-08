@@ -22,15 +22,7 @@ Creating Index File
             analytics.load("ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF");
             analytics.page();
            
-            analytics.load('ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF',{
-                cookie: {
-                    domain: 'https://bcaudillo.github.io/segment.github.io/',
-                    maxage: 604800, // 7 days in seconds
-                    path: '/',
-                    sameSite: 'Lax',
-                    secure: true
-                  }
-            })
+           
             }}();
         </script>
     
@@ -87,7 +79,15 @@ Creating Index File
                 })
             }  
           
-           
+            analytics.load('ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF',{
+                cookie: {
+                    domain: 'https://bcaudillo.github.io/segment.github.io/',
+                    maxage: 604800, // 7 days in seconds
+                    path: '/',
+                    sameSite: 'Lax',
+                    secure: true
+                  }
+            })
                
             analytics.track("click",{  
             date: today,
