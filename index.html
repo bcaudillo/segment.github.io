@@ -71,6 +71,17 @@ Creating Index File
             var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
             var username = email.substring(0,email.indexOf('@'))
+               
+            analytics.track("click",{  
+            date: today,
+            url: window.location.href,
+            userArray: Object.keys(user),
+            bool: true
+            }),
+          
+            analytics.track('destination submitted ', user, function() {
+                window.location.href = "";
+           })};
             
             analytics.identify('12345',{
                 subscriptionStatus: 'inactive'
@@ -85,19 +96,6 @@ Creating Index File
              
                 })
             }
-              
-           
-               
-            analytics.track("click",{  
-            date: today,
-            url: window.location.href,
-            userArray: Object.keys(user),
-            bool: true
-            }),
-          
-            analytics.track('destination submitted ', user, function() {
-                window.location.href = "";
-           })};
         </script>
     
 
