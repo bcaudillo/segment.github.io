@@ -71,6 +71,9 @@ Creating Index File
             var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
             var username = email.substring(0,email.indexOf('@'))
+            analytics.identify('12345',{
+                subscriptionStatus: 'inactive'
+            });
            
            
              if(gmail==='@gmail.com'){
@@ -94,9 +97,7 @@ Creating Index File
                 window.location.href = "";
            }
            
-            analytics.identify('12345',{
-                subscriptionStatus: 'inactive'
-            });
+            
            
            )};
             
