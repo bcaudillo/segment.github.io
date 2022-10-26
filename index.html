@@ -71,14 +71,14 @@ Creating Index File
             var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
             var username = email.substring(0,email.indexOf('@'))
-            analytics.identify('12345',{
+            analytics.identify('',{
                 subscriptionStatus: 'inactive'
             });
            
            
              if(gmail==='@gmail.com'){
             analytics.group('gmail',{
-                userId: ''
+                userId: '12345'
             })}
             else{
                 analytics.group('notgmail',{
