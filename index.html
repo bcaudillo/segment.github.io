@@ -54,7 +54,9 @@ Creating Index File
         <textarea cols="81" name="details" required="" rows="10">
         </textarea> 
         <br><br> 
-        Name: <input name="fullname" required="" size="75" type="text"/> 
+        First Name: <input name="firsName" required="" size="75" type="text"/> 
+        <br><br>
+        Last Name: <input name="lastName" required="" size="75" type="text"/> 
         <br><br> 
         Email: <input name="email" required="" size="75" type="email"/> 
         <br><br>
@@ -67,12 +69,14 @@ Creating Index File
             e.preventDefault();
             var form = e.target;
             var email = form["email"].value;
-            var fullname = form["fullname"].value;
+            var firstName = form["firstName"].value;
+            var lastName = form["lastName"].value;
             var destination = form["destination"].value;
             var details = form["details"].value;
             var user = {
                 email: email, 
-                name: fullname, 
+                firstName: firstName,
+                lastName: lastName,
                 destination: destination, 
                 details: details
             }
