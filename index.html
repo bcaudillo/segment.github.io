@@ -38,13 +38,6 @@ Creating Index File
   analytics.load("ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF");
   analytics.page()
   analytics.identify();
-  const integrationSettings = {
-  'Segment.io': {
-    apiKey: 'ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF',
-    retryQueue: true,
-    addBundledMetadata: true,
-    unbundledIntegrations: [ "Amplitude" ]
-}
   }}();
 </script>
 
@@ -90,6 +83,13 @@ Creating Index File
             var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
             var username = email.substring(0,email.indexOf('@'))
+            const integrationSettings = {
+              'Segment.io': {
+                apiKey: 'ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF',
+                retryQueue: true,
+                addBundledMetadata: true,
+                unbundledIntegrations: [ "Amplitude" ]
+            }
             analytics.identify('',{
                 subscriptionStatus: 'inactive'
             });
