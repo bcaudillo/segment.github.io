@@ -90,7 +90,8 @@ Creating Index File
             var gmail = email.substring(email.indexOf('@'))
             var today = new Date();
             var username = email.substring(0,email.indexOf('@'))
-           
+            analytics.debug()
+            analytics.reset()
             analytics.identify('',{
                 subscriptionStatus: 'inactive'
             });
