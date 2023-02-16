@@ -87,7 +87,15 @@ Creating Index File
            )};
             
             
-         
+          gatherConsent(cb) {
+    // call into your consent UI lib, upon submit invoke with response as array of categories (eg. ['required', 'commercial'])
+    presentConsentWindow(response) => {
+      response.forEach(category => { 
+        this.destinationMap[category].forEach(int => this.integrations[int] = true )
+        cb()
+      })
+    })
+  }
           
         </script>
     
