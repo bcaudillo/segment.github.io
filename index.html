@@ -1,113 +1,36 @@
-Creating Index File
 
-    <!DOCTYPE html> 
-    <html> 
-    <head>
-        <div id="target-container"></div>
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
 
-    
-        <script>
-          !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="xDISGQFLnZzRiDHTBYR4txMLBUU4Dt2x";;analytics.SNIPPET_VERSION="4.15.3";
-        /*   analytics.load("ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF"); */
-          analytics.page();
-          }}();
-        </script>
+<script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF";;analytics.SNIPPET_VERSION="4.15.3";
+  analytics.load("ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF");
+  analytics.page();
+  }}();
+</script>
+</head> 
+<body> 
+<h1>What is your favorite place to travel?</h1> 
+<p>I am building a directory of the sweetest travel destinations.</p>  
+<form name="travel" onsubmit="identify(event)">
+     What is your favorite travel destination?
+    <input name="destination" required="" size="81" type="text"/> 
+    <br><br><br> 
+    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
+    <br><br> 
+    <textarea cols="81" name="details" required="" rows="10">
+    </textarea> 
+    <br><br> 
+    Name: <input name="fullname" required="" size="75" type="text"/> 
+    <br><br> 
+    Email: <input name="email" required="" size="75" type="email"/> 
+    <br><br>
+    <input name="submit" type="submit" value="submit"/>
+</form> 
 
+    <!--Placeholder for identify and track script -->
 
-               
-    </head> 
-    <body> 
-
-    <h1>What is your favorite place to travel?</h1> 
-    <p>I am building a directory of the sweetest travel destinations.</p>  
-    
-    <form name="travel" onsubmit="identify(event)">
-         What is your favorite travel destination?
-        <input name="destination" required="" size="81" type="text"/> 
-        <br><br><br> 
-        Any recommendations (cool things to do, places to visit or restaurants to eat)? 
-        <br><br> 
-        <textarea cols="81" name="details" required="" rows="10">
-        </textarea> 
-        <br><br> 
-        First Name: <input name="firstName" required="" size="75" type="text"/> 
-        <br><br>
-        Last Name: <input name="lastName" required="" size="75" type="text"/> 
-        <br><br> 
-        Email: <input name="email" required="" size="75" type="email"/> 
-        <br><br>
-        <input name="submit" type="submit" value="submit"/>
-    </form> 
-    <button onClick= myFunction()>Click me</button>
-
-        
-        <script type="text/javascript">
-          function identify(e){
-            e.preventDefault();
-            var form = e.target;
-            var email = form["email"].value;
-            var firstName = form["firstName"].value;
-            var lastName = form["lastName"].value;
-            var destination = form["destination"].value;
-            var details = form["details"].value;
-            var user = {
-                email: email, 
-                firstName: firstName,
-                lastName: lastName,
-                destination: destination, 
-                details: details
-            }
-            var gmail = email.substring(email.indexOf('@'))
-            var today = new Date();
-            var username = email.substring(0,email.indexOf('@'))
-            analytics.debug()
-            analytics.identify('',{
-                subscriptionStatus: 'inactive'
-            });
-           
-           
-             if(gmail==='@gmail.com'){
-            analytics.group('gmail',{
-                userId: '12345'
-            })}
-            else{
-                analytics.group('notgmail',{
-                    userId: '12345'
-             
-                })}
-     
-            analytics.track("click",{  
-            date: today,
-            url: window.location.href,
-            userArray: Object.keys(user),
-            bool: true
-            }),
-          
-            analytics.track('destination submitted ', user, function() {
-                window.location.href = "";
-           }
-           
-           
-           
-           )};
-           
-          
-     
-          
-        </script>
-    
-
-           <script
-         src="https://unpkg.com/@segment/consent-manager@1.2.0/standalone/consent-manager.js"
-         data-container="#target-container"
-         data-writeKey="ezPpn5Ty6yFxHrzin2JUwhGMPofyikIF"
-         data-bannerContent="We use cookies (and other similar technologies) to collect data to improve your experience on our site."
-         data-bannerSubContent="You can change your preferences at any time."
-         data-preferencesDialogTitle="Website Data Collection Preferences"
-         data-preferencesDialogContent="We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site."
-         data-cancelDialogTitle="Are you sure you want to cancel?"
-         data-cancelDialogContent="Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy."
-       ></script>   
-    </body> 
-
-    </html>
+</body> 
+</html>
