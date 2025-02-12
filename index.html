@@ -62,6 +62,7 @@ analytics.page();
     <script type="text/javascript">
       function identify(e){
         e.preventDefault();
+        var userId = Math.floor(100000 + Math.random() * 900000);
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -73,7 +74,7 @@ analytics.page();
             destination: destination, 
             details: details
         };
-        analytics.identify('1234', {
+        analytics.identify(userId, {
             email: email, 
             name: fullname
         });
