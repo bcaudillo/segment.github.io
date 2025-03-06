@@ -14,34 +14,46 @@
     <!-- Segment Analytics with OneTrust Consent Wrapper -->
     <script src="https://cdn.jsdelivr.net/npm/@segment/analytics-consent-wrapper-onetrust@latest/dist/umd/analytics-onetrust.umd.js"></script>
     <script>
-    !function(){var i="analytics",analytics=window[i]=window[i]||[];
-    if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");
-    else{analytics.invoked=!0;
-    analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group",
-    "track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware",
-    "addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];
-    analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);
-    var n=Array.prototype.slice.call(arguments);
-    n.unshift(e);analytics.push(n);return analytics}};
-    for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}
-    analytics.load=function(key,n){var t=document.createElement("script");
-    t.type="text/javascript";t.async=!0;
-    t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
-    var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);
-    analytics._loadOptions=n};
-    analytics._writeKey="sdszlGyPuPhBGVdS1hp32Vs5ncjaGzAi";
-    withOneTrust(analytics, { consentModel: () => 'opt-in'}).load("sdszlGyPuPhBGVdS1hp32Vs5ncjaGzAi", {
-        integrations: {
-            "Segment.io": {
-                deliveryStrategy: {
-                    strategy: "batching",
-                    config: { size: 10 }
+        !function(){
+            var i="analytics",analytics=window[i]=window[i]||[];
+            if(!analytics.initialize)if(analytics.invoked)window.console&&console.error("Segment snippet included twice.");
+            else {
+                analytics.invoked=!0;
+                analytics.methods=[
+                    "trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group",
+                    "track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware",
+                    "addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"
+                ];
+                analytics.factory=function(e){ return function(){
+                    if(window[i].initialized) return window[i][e].apply(window[i],arguments);
+                    var n=Array.prototype.slice.call(arguments);
+                    n.unshift(e);
+                    analytics.push(n);
+                    return analytics;
+                }};
+                for(var n=0;n<analytics.methods.length;n++){
+                    var key=analytics.methods[n];
+                    analytics[key]=analytics.factory(key);
                 }
+                analytics.load=function(key,n){
+                    var t=document.createElement("script");
+                    t.type="text/javascript"; t.async=!0;
+                    t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
+                    var r=document.getElementsByTagName("script")[0];
+                    r.parentNode.insertBefore(t,r);
+                    analytics._loadOptions=n;
+                };
+                analytics._writeKey="sdszlGyPuPhBGVdS1hp32Vs5ncjaGzAi";
+                withOneTrust(analytics, { consentModel: () => 'opt-in'}).load("sdszlGyPuPhBGVdS1hp32Vs5ncjaGzAi", {
+                    integrations: {
+                        "Segment.io": {
+                            deliveryStrategy: { strategy: "batching", config: { size: 10 } }
+                        }
+                    }
+                });
+                analytics.page();
             }
-        }
-    });
-    analytics.page();
-    }}();
+        }();
     </script>
 
     <!-- Enhanced Styling -->
@@ -122,8 +134,8 @@
         }
     </style>
 </head>
-<body>
 
+<body>
     <div class="container">
         <h2>Checkout</h2>
         <form id="checkoutForm">
@@ -139,7 +151,7 @@
             <label>Credit Card Number</label>
             <input type="text" id="ccNumber" required>
 
-            <label>Expiration Date</label>
+            <label>Expiration Date (MM/YY)</label>
             <input type="text" id="ccExpiry" required>
 
             <label>CVV</label>
@@ -152,53 +164,58 @@
     </div>
 
     <script>
-        const forterAPI = "https://api.forter.com/v2"; // Forter API base URL
-        const merchantID = "your-merchant-id"; // Replace with real merchant ID
+        const forterAPI = "https://b95c1af980bc.api.forter-secure.com/v3/managed/orders"; 
+        const siteID = "b95c1af980bc";
+        const apiKey = "d765d808055979d41f3a77cd29a10da6a637255a:";
         const orderStatusDiv = document.getElementById("orderStatus");
 
         document.getElementById("checkoutForm").addEventListener("submit", async function(event) {
             event.preventDefault();
 
+            // Get form values
+            const fullName = document.getElementById("fullName").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const ccNumber = document.getElementById("ccNumber").value;
+            const ccExpiry = document.getElementById("ccExpiry").value;
+            const ccCVV = document.getElementById("ccCVV").value;
+
+            const orderId = `ORDER-${Math.floor(Math.random() * 1000000)}`;
+            const timestamp = Math.floor(Date.now() / 1000);
+
             const orderData = {
-                fullName: document.getElementById("fullName").value,
-                email: document.getElementById("email").value,
-                shippingAddress: document.getElementById("address").value,
-                paymentDetails: {
-                    ccNumber: document.getElementById("ccNumber").value,
-                    ccExpiry: document.getElementById("ccExpiry").value,
-                    ccCVV: document.getElementById("ccCVV").value
-                }
+                authorizationStep: "PRE_AUTHORIZATION",
+                orderId: orderId,
+                checkoutTime: timestamp,
+                orderType: "WEB",
+                totalAmount: { amountUSD: "99.95" },
+                cartItems: [
+                    { basicItemData: { category: "Apparel and accessories", name: "White GenericBrand handbag", price: { amountUSD: "99.95" }, productId: "Ag54352R7768kkO", quantity: 1, type: "TANGIBLE" }}
+                ],
+                connectionInformation: { customerIP: "10.0.0.127", userAgent: navigator.userAgent },
+                payment: [{ creditCard: { bin: ccNumber.substring(0, 6), lastFourDigits: ccNumber.slice(-4), nameOnCard: fullName }}]
             };
 
             try {
-                // Step 1: Create Order in Forter
-                const orderResponse = await fetch(`${forterAPI}/orders`, {
+                const orderResponse = await fetch(`${forterAPI}/${orderId}`, {
                     method: "POST",
-                    headers: { 
-                        "Content-Type": "application/json", 
-                        "Authorization": "Bearer your-api-key" 
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Basic ${btoa(apiKey)}`,
+                        "api-version": "2.2",
+                        "x-forter-siteid": siteID
                     },
-                    body: JSON.stringify({ merchantId: merchantID, orderData })
+                    body: JSON.stringify(orderData)
                 });
 
-                const orderResult = await orderResponse.json();
-                if (orderResult.status === "approved") {
-                    orderStatusDiv.innerHTML = "✅ Order Approved! Checking order status...";
-                    orderStatusDiv.className = "status success";
-
-                    // Step 2: Check Order Status
-                    setTimeout(() => checkOrderStatus(orderResult.orderId), 3000);
-                } else {
-                    orderStatusDiv.innerHTML = "❌ Order Declined!";
-                    orderStatusDiv.className = "status error";
-                }
+                const result = await orderResponse.json();
+                orderStatusDiv.innerHTML = result.status === "approved" ? "✅ Order Approved!" : "❌ Order Declined!";
+                analytics.track("Order Submitted", orderData);
             } catch (error) {
-                console.error("Order Processing Error:", error);
-                orderStatusDiv.innerHTML = "⚠️ Error processing your order.";
-                orderStatusDiv.className = "status error";
+                console.error("Error:", error);
+                orderStatusDiv.innerHTML = "⚠️ Error processing order.";
             }
         });
     </script>
-
 </body>
 </html>
