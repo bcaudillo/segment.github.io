@@ -1,97 +1,175 @@
-<!DOCTYPE html> 
-<html> 
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  
-  <!-- OneTrust Cookies Consent Notice start for example.com -->
-<!-- OneTrust Cookies Consent Notice start for bcaudillo.github.io -->
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="018de61b-d900-7628-93b8-0b99b2d81145-test" ></script>
-<script type="text/javascript">
-function OptanonWrapper() { }
-</script>
-<!-- OneTrust Cookies Consent Notice end for bcaudillo.github.io -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Secure Payment</title>
 
-  <!-- Add Segment's OneTrust Consent Wrapper -->
-  <script src="https://cdn.jsdelivr.net/npm/@segment/analytics-consent-wrapper-onetrust@latest/dist/umd/analytics-onetrust.umd.js"></script>
+    <!-- OneTrust Consent -->
+    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" 
+            type="text/javascript" charset="UTF-8"
+            data-domain-script="018de61b-d900-7628-93b8-0b99b2d81145-test"></script>
+    <script> function OptanonWrapper() { } </script>
 
-  <!--
-    Add / Modify Segment Analytics Snippet
-    * Find and replace: analytics.load('<MY_WRITE_KEY'>) -> withOneTrust(analytics).load('<MY_WRITE_KEY'>)
-  -->
-  <script>
-  !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="xX83OXjQUmxg4rohocUpRigxI4sELrYV";;analytics.SNIPPET_VERSION="5.2.0";
-  withOneTrust(analytics, { consentModel: () => 'opt-in'}).load("sdszlGyPuPhBGVdS1hp32Vs5ncjaGzAi", {
-    integrations: {
-      "Segment.io": {
-        deliveryStrategy: {
-          strategy: "batching",
-          config: {
-            size: 10
-          }
+    <!-- Segment Analytics with OneTrust Consent Wrapper -->
+    <script src="https://cdn.jsdelivr.net/npm/@segment/analytics-consent-wrapper-onetrust@latest/dist/umd/analytics-onetrust.umd.js"></script>
+    <script>
+    !function(){var i="analytics",analytics=window[i]=window[i]||[];
+    if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");
+    else{analytics.invoked=!0;
+    analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group",
+    "track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware",
+    "addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];
+    analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);
+    var n=Array.prototype.slice.call(arguments);
+    n.unshift(e);analytics.push(n);return analytics}};
+    for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}
+    analytics.load=function(key,n){var t=document.createElement("script");
+    t.type="text/javascript";t.async=!0;
+    t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
+    var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);
+    analytics._loadOptions=n};
+    analytics._writeKey="sdszlGyPuPhBGVdS1hp32Vs5ncjaGzAi";
+    withOneTrust(analytics, { consentModel: () => 'opt-in'}).load("sdszlGyPuPhBGVdS1hp32Vs5ncjaGzAi", {
+        integrations: {
+            "Segment.io": {
+                deliveryStrategy: {
+                    strategy: "batching",
+                    config: { size: 10 }
+                }
+            }
         }
-      }
-    }
-  });
-analytics.page();
-}}();
-  </script>
-    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
+    });
+    analytics.page();
+    }}();
+    </script>
 
+    <!-- Basic Styling -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 500px; margin: auto; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; }
+        button { background-color: #007bff; color: white; padding: 10px; width: 100%; border: none; }
+        .status { margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
 
-</head> 
-<body> 
-<h1>What is your favorite place to travel?</h1> 
-<p>I am building a directory of the sweetest travel destinations.</p>  
-<form name="travel" onsubmit="identify(event)">
-     What is your favorite travel destination?
-    <input name="destination" required="" size="81" type="text"/> 
-    <br><br><br> 
-    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
-    <br><br> 
-    <textarea cols="81" name="details" required="" rows="10">
-    </textarea> 
-    <br><br> 
-    Name: <input name="fullname" required="" size="75" type="text"/> 
-    <br><br> 
-    Email: <input name="email" required="" size="75" type="email"/> 
-    <br><br>
-    <input name="submit" type="submit" value="submit"/>
-</form> 
+    <div class="container">
+        <h2>Checkout</h2>
+        <form id="checkoutForm">
+            <label>Full Name</label>
+            <input type="text" id="fullName" required>
 
-   
-    <script type="text/javascript">
-      function identify(e){
-        e.preventDefault();
-        var userId = Math.floor(100000 + Math.random() * 900000);
-        var form = e.target;
-        var email = form["email"].value;
-        var fullname = form["fullname"].value;
-        var destination = form["destination"].value;
-        var details = form["details"].value;
-        var user = {
-            email: email, 
-            name: fullname, 
-            destination: destination, 
-            details: details
-        };
-        analytics.identify(userId, {
-            email: email, 
-            name: fullname
+            <label>Email</label>
+            <input type="email" id="email" required>
+
+            <label>Shipping Address</label>
+            <input type="text" id="address" required>
+
+            <label>Credit Card Number</label>
+            <input type="text" id="ccNumber" required>
+
+            <label>Expiration Date</label>
+            <input type="text" id="ccExpiry" required>
+
+            <label>CVV</label>
+            <input type="text" id="ccCVV" required>
+
+            <button type="submit">Place Order</button>
+        </form>
+
+        <div class="status" id="orderStatus"></div>
+    </div>
+
+    <script>
+        const forterAPI = "https://api.forter.com/v2"; // Forter API base URL
+        const merchantID = "your-merchant-id"; // Replace with real merchant ID
+        const orderStatusDiv = document.getElementById("orderStatus");
+
+        document.getElementById("checkoutForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const orderData = {
+                fullName: document.getElementById("fullName").value,
+                email: document.getElementById("email").value,
+                shippingAddress: document.getElementById("address").value,
+                paymentDetails: {
+                    ccNumber: document.getElementById("ccNumber").value,
+                    ccExpiry: document.getElementById("ccExpiry").value,
+                    ccCVV: document.getElementById("ccCVV").value
+                }
+            };
+
+            try {
+                // Step 1: Create Order in Forter
+                const orderResponse = await fetch(`${forterAPI}/orders`, {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json", 
+                        "Authorization": "Bearer your-api-key" 
+                    },
+                    body: JSON.stringify({ merchantId: merchantID, orderData })
+                });
+
+                const orderResult = await orderResponse.json();
+                if (orderResult.status === "approved") {
+                    orderStatusDiv.innerHTML = "✅ Order Approved! Checking order status...";
+                    
+                    // Step 2: Check Order Status
+                    setTimeout(() => checkOrderStatus(orderResult.orderId), 3000);
+                } else {
+                    orderStatusDiv.innerHTML = "❌ Order Declined!";
+                }
+
+                // Track event in Segment
+                analytics.track("Order Submitted", orderData);
+            } catch (error) {
+                console.error("Order Processing Error:", error);
+                orderStatusDiv.innerHTML = "⚠️ Error processing your order.";
+            }
         });
-        analytics.track('destination submitted', user, function() {
-            window.location.href = "";
-        });
-      }
-</script>
-<a href="https://google.com/">Go to Google</a>
-<script type="text/javascript" id="7f885b4960b7">
-    (function () {
-        var merchantConfig = {
-            csp: false,
-        };
 
-        var siteId = '7f885b4960b7';
-function t(t,e){for(var n=t.split(""),r=0;r<n.length;++r)n[r]=String.fromCharCode(n[r].charCodeAt(0)+e);return n.join("")}function e(e){return t(e,-_).replace(/%SN%/g,siteId)}function n(t){try{if("number"==typeof t&&window.location&&window.location.pathname){for(var e=window.location.pathname.split("/"),n=[],r=0;r<=Math.min(e.length-1,Math.abs(t));r++)n.push(e[r]);return n.join("/")||"/"}}catch(t){}return"/"}function r(){var t="no"+"op"+"fn",e="g"+"a",n="n"+"ame";return window[e]&&window[e][n]===t}function o(){return!(!navigator.brave||"function"!=typeof navigator.brave.isBrave)}function i(){return document.currentScript&&document.currentScript.src}function a(t){try{Q.ex=t,r()&&-1===Q.ex.indexOf(X.uB)&&(Q.ex+=X.uB),o()&&-1===Q.ex.indexOf(X.uBr)&&(Q.ex+=X.uBr),i()&&-1===Q.ex.indexOf(X.nIL)&&(Q.ex+=X.nIL),window.ftr__snp_cwc||(Q.ex+=X.s),B(Q)}catch(t){}}function c(t,e){function n(i){try{i.blockedURI===t&&i.disposition===o&&(e(),document.removeEventListener(r,n))}catch(t){document.removeEventListener(r,n)}}var r="securitypolicyviolation",o="enforce";document.addEventListener(r,n),setTimeout(function(){document.removeEventListener(r,n)},2*60*1e3)}function u(t,e,n,r){var o=!1;t="https://"+t,c(t,function(){r(!0),o=!0});var i=document.createElement("script");i.onerror=function(){if(!o)try{r(!1),o=!0}catch(t){}},i.onload=n,i.type="text/javascript",i.id="ftr__script",i.async=!0,i.src=t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(i,a)}function f(){tt(X.uDF),setTimeout(w,N,X.uDF)}function s(t,e,n,r){var o=!1,i=new XMLHttpRequest;if(c("https:"+t,function(){n(new Error("CSP Violation"),!0),o=!0}),"//"===t.slice(0,2)&&(t="https:"+t),"withCredentials"in i)i.open("GET",t,!0);else{if("undefined"==typeof XDomainRequest)return;i=new XDomainRequest,i.open("GET",t)}Object.keys(r).forEach(function(t){i.setRequestHeader(t,r[t])}),i.onload=function(){"function"==typeof e&&e(i)},i.onerror=function(t){if("function"==typeof n&&!o)try{n(t,!1),o=!0}catch(t){}},i.onprogress=function(){},i.ontimeout=function(){"function"==typeof n&&n("tim"+"eo"+"ut",!1)},setTimeout(function(){i.send()},0)}function d(t,siteId,e){function n(t){var e=t.toString(16);return e.length%2?"0"+e:e}function r(t){if(t<=0)return"";for(var e="0123456789abcdef",n="",r=0;r<t;r++)n+=e[Math.floor(Math.random()*e.length)];return n}function o(t){for(var e="",r=0;r<t.length;r++)e+=n(t.charCodeAt(r));return e}function i(t){for(var e=t.split(""),n=0;n<e.length;++n)e[n]=String.fromCharCode(255^e[n].charCodeAt(0));return e.join("")}e=e?"1":"0";var a=[];return a.push(t),a.push(siteId),a.push(e),function(t){var e=40,n="";return t.length<e/2&&(n=","+r(e/2-t.length-1)),o(i(t+n))}(a.join(","))}function h(){function t(){F&&(tt(X.dUAL),setTimeout(w,N,X.dUAL))}function e(t,e){a(e?X.uAS+X.uF+X.cP:X.uAS+X.uF),F="F"+"T"+"R"+"A"+"U",setTimeout(w,N,X.uAS)}window.ftr__fdad(t,e)}function l(){function t(){F&&setTimeout(w,N,X.uDAD)}function e(t,e){a(e?X.uDS+X.uF+X.cP:X.uDS+X.uF),F="F"+"T"+"R"+"A"+"U",setTimeout(w,N,X.uDS)}window.ftr__radd(t,e)}function w(t){try{var e;switch(t){case X.uFP:e=I;break;case X.uDF:e=M;break;default:e=F}if(!e)return;var n=function(){try{et(),a(t+X.uS)}catch(t){}},r=function(e){try{et(),Q.td=1*new Date-Q.ts,a(e?t+X.uF+X.cP:t+X.uF),t===X.uFP&&f(),t===X.uDF&&(V?l():h()),t!==X.uAS&&t!==X.dUAL||V||l(),t!==X.uDS&&t!==X.uDAD||V&&h()}catch(t){a(X.eUoe)}};if(e==="F"+"T"+"R"+"A"+"U")return void r();u(e,void 0,n,r)}catch(e){a(t+X.eTlu)}}var g="22ge:t7mj8unkn;1forxgiurqw1qhw2vwdwxv",v="fort",p="erTo",m="ken",_=3;window.ftr__config={m:merchantConfig,s:"25",si:siteId};var y=!1,U=!1,T=v+p+m,x=400*24*60,A,S=10;A={write:function(t,e,r,o){void 0===o&&(o=!0);var i=0;window.ftr__config&&window.ftr__config.m&&window.ftr__config.m.ckDepth&&(i=window.ftr__config.m.ckDepth);var a,c,u=n(i);if(r?(a=new Date,a.setTime(a.getTime()+60*r*1e3),c="; expires="+a.toGMTString()):c="",!o)return void(document.cookie=escape(t)+"="+escape(e)+c+"; path="+u);for(var f=1,s=document.domain.split("."),d=S,h=!0;h&&s.length>=f&&d>0;){var l=s.slice(-f).join(".");document.cookie=escape(t)+"="+escape(e)+c+"; path="+u+"; domain="+l;var w=A.read(t);null!=w&&w==e||(l="."+l,document.cookie=escape(t)+"="+escape(e)+c+"; path="+u+"; domain="+l),h=-1===document.cookie.indexOf(t+"="+e),f++,d--}},read:function(t){var e=null;try{for(var n=escape(t)+"=",r=document.cookie.split(";"),o=32,i=0;i<r.length;i++){for(var a=r[i];a.charCodeAt(0)===o;)a=a.substring(1,a.length);0===a.indexOf(n)&&(e=unescape(a.substring(n.length,a.length)))}}finally{return e}}};var D=window.ftr__config.s;D+="ck";var L=function(t){var e=!1,n=null,r=function(){try{if(!n||!e)return;n.remove&&"function"==typeof n.remove?n.remove():document.head.removeChild(n),e=!1}catch(t){}};document.head&&(!function(){n=document.createElement("link"),n.setAttribute("rel","pre"+"con"+"nect"),n.setAttribute("cros"+"sori"+"gin","anonymous"),n.onload=r,n.onerror=r,n.setAttribute("href",t),document.head.appendChild(n),e=!0}(),setTimeout(r,3e3))},E=e(g||"22ge:t7mj8unkn;1forxgiurqw1qhw2vwdwxv"),C=t("[0Uhtxhvw0LG",-_),R=t("[0Fruuhodwlrq0LG",-_),P=t("Li0Qrqh0Pdwfk",-_),k=e("dss1vlwhshuirupdqfhwhvw1qhw"),q=e("2241414142gqv0txhu|"),F,b="fgq71iruwhu1frp",M,O;M=e("(VQ(1"+b+"2vq2(VQ(2vfulsw1mv"),O=e("(VQ(1"+b+"2vqV2(VQ(2vfulsw1mv");var I;window.ftr__config&&window.ftr__config.m&&window.ftr__config.m.fpi&&(I=window.ftr__config.m.fpi+e("2vq2(VQ(2vfulsw1mv"));var V=!1;V=!1;var N=10;window.ftr__startScriptLoad=1*new Date;var j=function(t){var e="ft"+"r:tok"+"enR"+"eady";window.ftr__tt&&clearTimeout(window.ftr__tt),window.ftr__tt=setTimeout(function(){try{delete window.ftr__tt,t+="_tt";var n=document.createEvent("Event");n.initEvent(e,!1,!1),n.detail=t,document.dispatchEvent(n)}catch(t){}},1e3)},B=function(t){var e=function(t){return t||""},n=e(t.id)+"_"+e(t.ts)+"_"+e(t.td)+"_"+e(t.ex)+"_"+e(D),r=x;!isNaN(window.ftr__config.m.ckTTL)&&window.ftr__config.m.ckTTL&&(r=window.ftr__config.m.ckTTL),A.write(T,n,r,!0),j(n),window.ftr__gt=n},G=function(){var t=A.read(T)||"",e=t.split("_"),n=function(t){return e[t]||void 0};return{id:n(0),ts:n(1),td:n(2),ex:n(3),vr:n(4)}},H=function(){for(var t={},e="fgu",n=[],r=0;r<256;r++)n[r]=(r<16?"0":"")+r.toString(16);var o=function(t,e,r,o,i){var a=i?"-":"";return n[255&t]+n[t>>8&255]+n[t>>16&255]+n[t>>24&255]+a+n[255&e]+n[e>>8&255]+a+n[e>>16&15|64]+n[e>>24&255]+a+n[63&r|128]+n[r>>8&255]+a+n[r>>16&255]+n[r>>24&255]+n[255&o]+n[o>>8&255]+n[o>>16&255]+n[o>>24&255]},i=function(){if(window.Uint32Array&&window.crypto&&window.crypto.getRandomValues){var t=new window.Uint32Array(4);return window.crypto.getRandomValues(t),{d0:t[0],d1:t[1],d2:t[2],d3:t[3]}}return{d0:4294967296*Math.random()>>>0,d1:4294967296*Math.random()>>>0,d2:4294967296*Math.random()>>>0,d3:4294967296*Math.random()>>>0}},a=function(){var t="",e=function(t,e){for(var n="",r=t;r>0;--r)n+=e.charAt(1e3*Math.random()%e.length);return n};return t+=e(2,"0123456789"),t+=e(1,"123456789"),t+=e(8,"0123456789")};return t.safeGenerateNoDash=function(){try{var t=i();return o(t.d0,t.d1,t.d2,t.d3,!1)}catch(t){try{return e+a()}catch(t){}}},t.isValidNumericalToken=function(t){return t&&t.toString().length<=11&&t.length>=9&&parseInt(t,10).toString().length<=11&&parseInt(t,10).toString().length>=9},t.isValidUUIDToken=function(t){return t&&32===t.toString().length&&/^[a-z0-9]+$/.test(t)},t.isValidFGUToken=function(t){return 0==t.indexOf(e)&&t.length>=12},t}(),X={uDF:"UDF",dUAL:"dUAL",uAS:"UAS",uDS:"UDS",uDAD:"UDAD",uFP:"UFP",mLd:"1",eTlu:"2",eUoe:"3",uS:"4",uF:"9",tmos:["T5","T10","T15","T30","T60"],tmosSecs:[5,10,15,30,60],bIR:"43",uB:"u",uBr:"b",cP:"c",nIL:"i",s:"s"};try{var Q=G();try{Q.id&&(H.isValidNumericalToken(Q.id)||H.isValidUUIDToken(Q.id)||H.isValidFGUToken(Q.id))?window.ftr__ncd=!1:(Q.id=H.safeGenerateNoDash(),window.ftr__ncd=!0),Q.ts=window.ftr__startScriptLoad,B(Q),window.ftr__snp_cwc=!!A.read(T),window.ftr__snp_cwc||(M=O);for(var $="for"+"ter"+".co"+"m",z="ht"+"tps://c"+"dn9."+$,J="ht"+"tps://"+Q.id+"-"+siteId+".cd"+"n."+$,K="http"+"s://cd"+"n3."+$,W=[z,J,K],Y=0;Y<W.length;Y++)L(W[Y]);var Z=new Array(X.tmosSecs.length),tt=function(t){for(var e=0;e<X.tmosSecs.length;e++)Z[e]=setTimeout(a,1e3*X.tmosSecs[e],t+X.tmos[e])},et=function(){for(var t=0;t<X.tmosSecs.length;t++)clearTimeout(Z[t])};window.ftr__fdad=function(e,n){if(!y){y=!0;var r={};r[P]=d(window.ftr__config.s,siteId,window.ftr__config.m.csp),s(E,function(n){try{var r=n.getAllResponseHeaders().toLowerCase();if(r.indexOf(R.toLowerCase())>=0){var o=n.getResponseHeader(R);window.ftr__altd2=t(atob(o),-_-1)}if(r.indexOf(C.toLowerCase())<0)return;var i=n.getResponseHeader(C),a=t(atob(i),-_-1);if(a){var c=a.split(":");if(c&&2===c.length){for(var u=c[0],f=c[1],s="",d=0,h=0;d<20;++d)s+=d%3>0&&h<12?siteId.charAt(h++):Q.id.charAt(d);var l=f.split(",");if(l.length>1){var w=l[0],g=l[1];F=u+"/"+w+"."+s+"."+g}}}e()}catch(t){}},function(t,e){n&&n(t,e)},r)}},window.ftr__radd=function(t,e){function n(e){try{var n=e.response,r=function(t){function e(t,n,i){try{if(i>=r)return{name:"",nextOffsetToProcess:n,error:"Max pointer dereference depth exceeded"};for(var a=[],c=n,u=t.getUint8(c),f=0;f<o;){if(f++,192==(192&u)){var s=(63&u)<<8|t.getUint8(c+1),d=e(t,s,i+1);if(d.error)return d;var h=d.name;return a.push(h),{name:a.join("."),nextOffsetToProcess:c+2}}if(!(u>0)){if(0!==u)return{name:"",nextOffsetToProcess:c,error:"Unexpected length at the end of name: "+u.toString()};return{name:a.join("."),nextOffsetToProcess:c+1}}for(var l="",w=1;w<=u;w++)l+=String.fromCharCode(t.getUint8(c+w));a.push(l),c+=u+1,u=t.getUint8(c)}return{name:"",nextOffsetToProcess:c,error:"Max iterations exceeded"}}catch(t){return{name:"",nextOffsetToProcess:n,error:"Unexpected error while parsing response: "+t.toString()}}}var n,r=4,o=100,i=16,a=new DataView(t),c=a.getUint16(0),u=a.getUint16(2),f=a.getUint16(4),s=a.getUint16(6),d=a.getUint16(8),h=a.getUint16(10),l=12,w=[],g=0;for(g=0;g<f;g++){if(n=e(a,l,0),n.error)throw new Error(n.error);if(l=n.nextOffsetToProcess,!Number.isInteger(l))throw new Error("invalid returned offset");var v=n.name,p=a.getUint16(l);l+=2;var m=a.getUint16(l);l+=2,w.push({qname:v,qtype:p,qclass:m})}var _=[];for(g=0;g<s;g++){if(n=e(a,l,0),n.error)throw new Error(n.error);if(l=n.nextOffsetToProcess,!Number.isInteger(l))throw new Error("invalid returned offset");var y=n.name,U=a.getUint16(l);if(U!==i)throw new Error("Unexpected record type: "+U.toString());l+=2;var T=a.getUint16(l);l+=2;var x=a.getUint32(l);l+=4;var A=a.getUint16(l);l+=2;for(var S="",D=l,L=0;D<l+A&&L<o;){L++;var E=a.getUint8(D);D+=1;S+=(new TextDecoder).decode(t.slice(D,D+E)),D+=E}if(L>=o)throw new Error("Max iterations exceeded while reading TXT data");l+=A,_.push({name:y,type:U,class:T,ttl:x,data:S})}return{transactionId:c,flags:u,questionCount:f,answerCount:s,authorityCount:d,additionalCount:h,questions:w,answers:_}}(n);if(!r)throw new Error("Error parsing DNS response");if(!("answers"in r))throw new Error("Unexpected response");var o=r.answers;if(0===o.length)throw new Error("No answers found");var i=o[0].data;i=i.replace(/^"(.*)"$/,"$1");var a=function(t){var e=40,n=32,r=126;try{for(var o=atob(t),i="",a=0;a<o.length;a++)i+=function(t){var o=t.charCodeAt(0),i=o-e;return i<n&&(i=r-(n-i)+1),String.fromCharCode(i)}(o[a]);return atob(i)}catch(t){return}}(i);if(!a)throw new Error("failed to decode the value");var c=function(t){var e="_"+"D"+"L"+"M"+"_",n=t.split(e);if(!(n.length<2)){var r=n[0],o=n[1];if(!(r.split(".").length-1<1))return{jURL:r,eURL:o}}}(a);if(!c)throw new Error("failed to parse the value");var u=c.jURL,f=c.eURL;F=function(t){for(var e="",n=0,r=0;n<20;++n)e+=n%3>0&&r<12?siteId.charAt(r++):Q.id.charAt(n);return t.replace("/PRM1","").replace("/PRM2","/main.").replace("/PRM3",e).replace("/PRM4",".js")}(u),window.ftr__altd3=f,t()}catch(t){}}function r(t,n){e&&e(t,n)}if(!U){window.ftr__config.m.dr==="N"+"D"+"R"&&e(new Error("N"+"D"+"R"),!1),q&&k||e(new Error("D"+"P"+"P"),!1),U=!0;try{var o=function(t){for(var e=new Uint8Array([0,0]),n=new Uint8Array([1,0]),r=new Uint8Array([0,1]),o=new Uint8Array([0,0]),i=new Uint8Array([0,0]),a=new Uint8Array([0,0]),c=t.split("."),u=[],f=0;f<c.length;f++){var s=c[f];u.push(s.length);for(var d=0;d<s.length;d++)u.push(s.charCodeAt(d))}u.push(0);var h=16,l=new Uint8Array([0,h]),w=new Uint8Array([0,1]),g=new Uint8Array(e.length+n.length+r.length+o.length+i.length+a.length+u.length+l.length+w.length);return g.set(e,0),g.set(n,e.length),g.set(r,e.length+n.length),g.set(o,e.length+n.length+r.length),g.set(i,e.length+n.length+r.length+o.length),g.set(a,e.length+n.length+r.length+o.length+i.length),g.set(u,e.length+n.length+r.length+o.length+i.length+a.length),g.set(l,e.length+n.length+r.length+o.length+i.length+a.length+u.length),g.set(w,e.length+n.length+r.length+o.length+i.length+a.length+u.length+l.length),g}(k);!function(t,e,n,r,o){var i=!1,a=new XMLHttpRequest;if(c("https:"+t,function(){o(new Error("CSP Violation"),!0),i=!0}),"//"===t.slice(0,2)&&(t="https:"+t),"withCredentials"in a)a.open("POST",t,!0);else{if("undefined"==typeof XDomainRequest)return;a=new XDomainRequest,a.open("POST",t)}a.responseType="arraybuffer",a.setRequestHeader("Content-Type",e),a.onload=function(){"function"==typeof r&&r(a)},a.onerror=function(t){if("function"==typeof o&&!i)try{o(t,!1),i=!0}catch(t){}},a.onprogress=function(){},a.ontimeout=function(){"function"==typeof o&&o("tim"+"eo"+"ut",!1)},setTimeout(function(){a.send(n)},0)}(q,"application/dns-message",o,n,r)}catch(t){e(t,!1)}}};var nt=I?X.uFP:X.uDF;tt(nt),setTimeout(w,N,nt)}catch(t){a(X.mLd)}}catch(t){}})();
-</script>
-</body> 
+        async function checkOrderStatus(orderId) {
+            try {
+                const statusResponse = await fetch(`${forterAPI}/order-status/${orderId}`, {
+                    headers: { "Authorization": "Bearer your-api-key" }
+                });
+                const statusData = await statusResponse.json();
+                orderStatusDiv.innerHTML += `<br>🕒 Order Status: ${statusData.status}`;
+
+                if (statusData.status === "failed") {
+                    submitClaim(orderId);
+                }
+
+                // Track order status in Segment
+                analytics.track("Order Status Checked", { orderId, status: statusData.status });
+            } catch (error) {
+                console.error("Order Status Error:", error);
+            }
+        }
+
+        async function submitClaim(orderId) {
+            try {
+                orderStatusDiv.innerHTML += `<br>🔄 Submitting claim...`;
+
+                const claimResponse = await fetch(`${forterAPI}/claims`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "Authorization": "Bearer your-api-key" },
+                    body: JSON.stringify({ orderId, reason: "Fraudulent Transaction" })
+                });
+
+                const claimData = await claimResponse.json();
+                orderStatusDiv.innerHTML += `<br>📢 Claim Submitted: ${claimData.status}`;
+
+                // Track claim submission in Segment
+                analytics.track("Claim Submitted", { orderId, claimStatus: claimData.status });
+            } catch (error) {
+                console.error("Claim Submission Error:", error);
+                orderStatusDiv.innerHTML += `<br>⚠️ Claim submission failed.`;
+            }
+        }
+    </script>
+
+</body>
 </html>
