@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Secure Payment</title>
+    <title>Secure Checkout</title>
 
     <!-- OneTrust Consent -->
     <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" 
@@ -44,13 +44,82 @@
     }}();
     </script>
 
-    <!-- Basic Styling -->
+    <!-- Enhanced Styling -->
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .container { max-width: 500px; margin: auto; }
-        input, select { width: 100%; padding: 8px; margin-top: 5px; }
-        button { background-color: #007bff; color: white; padding: 10px; width: 100%; border: none; }
-        .status { margin-top: 15px; font-weight: bold; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 450px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .status {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .status.success {
+            color: green;
+        }
+
+        .status.error {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -115,60 +184,20 @@
                 const orderResult = await orderResponse.json();
                 if (orderResult.status === "approved") {
                     orderStatusDiv.innerHTML = "✅ Order Approved! Checking order status...";
-                    
+                    orderStatusDiv.className = "status success";
+
                     // Step 2: Check Order Status
                     setTimeout(() => checkOrderStatus(orderResult.orderId), 3000);
                 } else {
                     orderStatusDiv.innerHTML = "❌ Order Declined!";
+                    orderStatusDiv.className = "status error";
                 }
-
-                // Track event in Segment
-                analytics.track("Order Submitted", orderData);
             } catch (error) {
                 console.error("Order Processing Error:", error);
                 orderStatusDiv.innerHTML = "⚠️ Error processing your order.";
+                orderStatusDiv.className = "status error";
             }
         });
-
-        async function checkOrderStatus(orderId) {
-            try {
-                const statusResponse = await fetch(`${forterAPI}/order-status/${orderId}`, {
-                    headers: { "Authorization": "Bearer your-api-key" }
-                });
-                const statusData = await statusResponse.json();
-                orderStatusDiv.innerHTML += `<br>🕒 Order Status: ${statusData.status}`;
-
-                if (statusData.status === "failed") {
-                    submitClaim(orderId);
-                }
-
-                // Track order status in Segment
-                analytics.track("Order Status Checked", { orderId, status: statusData.status });
-            } catch (error) {
-                console.error("Order Status Error:", error);
-            }
-        }
-
-        async function submitClaim(orderId) {
-            try {
-                orderStatusDiv.innerHTML += `<br>🔄 Submitting claim...`;
-
-                const claimResponse = await fetch(`${forterAPI}/claims`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json", "Authorization": "Bearer your-api-key" },
-                    body: JSON.stringify({ orderId, reason: "Fraudulent Transaction" })
-                });
-
-                const claimData = await claimResponse.json();
-                orderStatusDiv.innerHTML += `<br>📢 Claim Submitted: ${claimData.status}`;
-
-                // Track claim submission in Segment
-                analytics.track("Claim Submitted", { orderId, claimStatus: claimData.status });
-            } catch (error) {
-                console.error("Claim Submission Error:", error);
-                orderStatusDiv.innerHTML += `<br>⚠️ Claim submission failed.`;
-            }
-        }
     </script>
 
 </body>
